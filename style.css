@@ -318,6 +318,15 @@ form {
         width: 40px;
         
     }
+    .head-title{
+        top:300px;
+    }
+    .head-title h1{
+        font-size: 1rem;
+    }
+    .head-title h5{
+        font-size: 0.5rem;
+    }
     /* menue*/
     .main-nav{
         background: #8690FF;
