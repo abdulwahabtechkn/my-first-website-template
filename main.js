@@ -27,26 +27,29 @@ headTitle.addEventListener('mouseout', () => {
 
 // scroll effect
 // get element
-/*
+
 // nav item
 let home = document.querySelector('#nav-home'),
     about = document.querySelector('#nav-about'),
-    services = document.querySelector('nav-services'),
-    contact = document.querySelector('nav-contact');
+    services = document.querySelector('#nav-services'),
+    contact = document.querySelector('#nav-contact');
     
 // general scroll function
-let scroller = (target, timeTaken) => {
-    let target = document.querySelector(target),
+    function scroller(targetS, timeTaken){
+    var target = document.querySelector(targetS),
         targetPosition = target.getBoundingClientRect().top,
+        
         startPosition = window.pageYOffset,
         distance = targetPosition - startPosition,
         startTime = null;
         
-    let animation = (currentTime) => {
+        
+     function animation(currentTime){
         if (startTime === null) startTime = currentTime;
-        
         var elapsedTime = currentTime - startTime;
-        
+        var runToSection = ease(elapsedTime, startPosition, distance, timeTaken);
+        window.scrollTo(0, runToSection);
+        if (elapsedTime < timeTaken) requestAnimationFrame(animation);
         
         // ease function from gizma.com/easing
         // it calculate the distance between currentPostion and target position
@@ -57,6 +60,22 @@ let scroller = (target, timeTaken) => {
             t--;
             return -c / 2 * (t * (t - 2) - 1) + b;
         }
-        requestAnimationFrame(animation);
     }
-}*/
+    requestAnimationFrame(animation);
+}
+
+//event handelers
+home.addEventListener('click', () => {
+    scroller('.top-header', 1000);
+});
+about.addEventListener('click', () => {
+    scroller('.about-section', 1000);
+    
+});
+services.addEventListener('click', () => {
+    scroller('#services', 1000);
+    
+});
+contact.addEventListener('click', () =>{
+    scroller('#Contact', 1000);
+});
